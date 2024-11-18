@@ -1,5 +1,13 @@
 import { FullEntry } from './types';
+import { readFile } from 'fs/promises';
+import { dirname, join } from 'path';
+import { fileURLToPath } from 'url';
 
-export const CompleteLangSpec = (await import(
-	'./langspec.cache.json'
-)).default as FullEntry[];
+export async function CompleteLangSpec() {
+	return JSON.parse(
+		await readFile(
+			join(dirname(fileURLToPath(import.meta.url)), 'complete-lang-spec.json'),
+			'utf-8'
+		)
+	) as FullEntry[];
+}

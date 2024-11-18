@@ -8,7 +8,7 @@ export async function searchLangSpec(
 	const matchWord = matching === 'word' || !matching,
 		matchMeaning = matching === 'meaning' || !matching;
 	const results: FullEntry[] = [];
-	for (const entry of CompleteLangSpec)
+	for (const entry of await CompleteLangSpec())
 		if (
 			(matchWord && entry.word.includes(query)) ||
 			(matchMeaning && entry.meaning.includes(query))

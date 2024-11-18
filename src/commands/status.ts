@@ -3,7 +3,10 @@ import {
 	EmbedBuilder,
 	SlashCommandBuilder
 } from 'discord.js';
+import Jsoning from 'jsoning';
 import { Duration } from 'luxon';
+import { dirname, join } from 'path';
+import { fileURLToPath } from 'url';
 
 export const data = new SlashCommandBuilder()
 	.setName('status')
@@ -30,6 +33,22 @@ export async function execute(interaction: ChatInputCommandInteraction) {
 				{
 					name: 'Latency (ms)',
 					value: interaction.client.ws.ping.toString()
+				},
+				{
+					name: 'Language Specification Cache Age',
+					value: Duration.fromMillis(
+						Date.now() -
+							parseInt(
+								(await new Jsoning(
+									join(
+										dirname(fileURLToPath(import.meta.url)),
+										'stats.tmp.db.json'
+									)
+								).get('langSpecCacheAge'))!
+							)
+					).toHuman({
+						listStyle: 'long'
+					})
 				}
 			)
 		]
