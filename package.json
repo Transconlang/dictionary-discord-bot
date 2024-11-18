@@ -1,0 +1,41 @@
+{
+	"author": "Akhil Pillai",
+	"dependencies": {
+		"discord.js": "^14.16.3",
+		"dotenv": "^16.4.5",
+		"express": "^4.21.1",
+		"helmet": "^8.0.0",
+		"jsoning": "^1.0.1",
+		"node-schedule": "^2.1.1",
+		"pino": "^9.5.0",
+		"pino-pretty": "^13.0.0"
+	},
+	"devDependencies": {
+		"@types/dotenv": "^8.2.3",
+		"@types/express": "^5.0.0",
+		"@types/node-schedule": "^2.1.7",
+		"@typescript-eslint/eslint-plugin": "^8.14.0",
+		"@typescript-eslint/parser": "^8.14.0",
+		"knip": "^5.37.1",
+		"npm-check-updates": "^17.1.11",
+		"prettier": "^3.3.3",
+		"tsx": "^4.19.2",
+		"typescript": "^5.6.3"
+	},
+	"main": "src/index.ts",
+	"type": "module",
+	"private": true,
+	"scripts": {
+		"build-commands": "tsx scripts/buildCommands.ts",
+		"build-image": "docker build -t akpi816218/transconlang-discord . && docker push akpi816218/transconlang-discord",
+		"cache-langspec": "tsx scripts/cacheLangSpec.ts",
+		"check": "tsc",
+		"deploy": "npm ci && npm start",
+		"deploy-full": "npm ci && npm urn build-commands && npm urn cache-langspec && npm start",
+		"fmt": "prettier -w .",
+		"knip": "knip",
+		"lint": "eslint .",
+		"start": "tsx src/index.ts",
+		"up": "ncu -u && npm i"
+	}
+}
