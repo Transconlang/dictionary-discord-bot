@@ -17,4 +17,4 @@ export const PORT = 8000;
 
 // ! change branch to main later
 export const LangSpecURL =
-	'https://raw.githubusercontent.com/Transconlang/translang/refs/heads/rawspec/rawspec/0-complete.json';
+	'https://raw.githubusercontent.com/Transconlang/translang/refs/heads/main/rawspec/0-complete.json';
