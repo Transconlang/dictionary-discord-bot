@@ -6,7 +6,7 @@ import { fileURLToPath } from 'url';
 export async function CompleteLangSpec() {
 	return JSON.parse(
 		await readFile(
-			join(dirname(fileURLToPath(import.meta.url)), 'complete-lang-spec.json'),
+			join(dirname(fileURLToPath(import.meta.url)), 'langspec.cache.json'),
 			'utf-8'
 		)
 	) as FullEntry[];
