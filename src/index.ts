@@ -13,18 +13,12 @@ import {
 import { argv, stdout } from 'process';
 import { dirname, join } from 'path';
 import { fileURLToPath } from 'url';
-import { readdir, rm, writeFile } from 'fs/promises';
+import { readdir, rm } from 'fs/promises';
 import { Jsoning } from 'jsoning';
-import { DevIds, LangSpecURL, permissionsBits, PORT } from './config';
-import {
-	Command,
-	CommandClient,
-	createServer,
-	FullEntry,
-	logger,
-	Methods
-} from './lib';
+import { DevIds, permissionsBits, PORT } from './config';
+import { Command, CommandClient, createServer, logger, Methods } from './lib';
 import { scheduleJob } from 'node-schedule';
+import { refreshCachedLangSpec } from '@/lib/kumilinwa/refreshCache';
 
 const Dirname = dirname(fileURLToPath(import.meta.url));
 
@@ -251,16 +245,4 @@ async function sendError(e: Error) {
 			});
 		});
 	}
-}
-
-async function refreshCachedLangSpec() {
-	const data = (await fetch(LangSpecURL)
-		.then(res => res.json())
-		.catch(e => sendError)) as FullEntry[];
-	await writeFile(
-		join(Dirname, 'lib', 'kumilinwa', 'langspec.cache.json'),
-		JSON.stringify(data)
-	);
-	await StatsDB.set('langSpecCacheAge', Date.now());
-	logger.debug('Cached language specification.');
 }
