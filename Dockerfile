@@ -8,9 +8,9 @@ WORKDIR /app
 COPY package*.json ./
 
 # Copy local directories to the current local directory of our docker image (/app)
-COPY ./src ./
+COPY ./src ./src
 COPY ./tsconfig.json ./
-COPY ./scripts ./
+COPY ./scripts ./scripts
 
 # Install node packages, install serve, build the app, and remove dependencies at the end
 RUN npm ci
