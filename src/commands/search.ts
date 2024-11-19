@@ -35,7 +35,12 @@ export async function execute(interaction: ChatInputCommandInteraction) {
 		(match as MatchType) ?? undefined
 	);
 	const response = results.length
-		? results.map(({ word, meaning }) => `${word}: ${meaning}`).join('\n')
+		? results
+				.map(
+					({ word, meaning, extra, type }) =>
+						`${word} (${type}): ${meaning} ${extra?.join(' ') ?? ''}`
+				)
+				.join('\n')
 		: 'No results found.';
 	await interaction.editReply(
 		response.length > 2000
