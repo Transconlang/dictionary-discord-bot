@@ -1,17 +1,18 @@
-export interface Section {
-	title?: string;
-	type: WordType;
-	headers: string[];
-	entries: Entry[];
-}
-
 /**
  * The type of the entry in each separated file (i.e. verbs.json)
  */
+export interface Section {
+	title: string | null;
+	headers: string[];
+	type: WordType;
+	entries: Entry[];
+}
+
 export interface Entry {
 	word: string;
-	meaning: string;
-	extra?: string[];
+	meaning: string | null;
+	impl: string | null;
+	obscurism: string | null;
 }
 
 /**
@@ -36,4 +37,5 @@ export type WordType =
 	| 'preposition'
 	| 'pronoun'
 	| 'suffix'
-	| 'verb';
+	| 'verb'
+	| 'article';

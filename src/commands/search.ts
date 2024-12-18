@@ -37,8 +37,8 @@ export async function execute(interaction: ChatInputCommandInteraction) {
 	const response = results.length
 		? results
 				.map(
-					({ word, meaning, extra, type }) =>
-						`${word} (${type}): ${meaning} ${extra?.join(' ') ?? ''}`
+					({ word, meaning, impl, type }) =>
+						`${word} (${type}): ${meaning}${impl ? ` – ${impl}` : ''}`
 				)
 				.join('\n')
 		: 'No results found.';
