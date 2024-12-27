@@ -14,7 +14,7 @@ import { argv, stdout } from 'process';
 import { dirname, join } from 'path';
 import { fileURLToPath } from 'url';
 import { readdir, rm } from 'fs/promises';
-import { Jsoning } from 'jsoning';
+import { Jsoning, JSONValue } from 'jsoning';
 import { DevIds, permissionsBits, PORT } from './config';
 import { Command, CommandClient, createServer, logger, Methods } from './lib';
 import { scheduleJob } from 'node-schedule';
@@ -135,8 +135,7 @@ for (const file of commandFiles) {
 	if (command.help)
 		await cmndb.set(
 			command.data.name,
-			// @ts-expect-error types
-			command.help.toJSON()
+			command.help.toJSON() as unknown as JSONValue
 		);
 }
 client.commands.freeze();
@@ -216,8 +215,8 @@ process.on('uncaughtException', sendError);
 process.on('unhandledRejection', sendError);
 logger.debug('Set up error handling.');
 
-// refresh cached kumilinwa spec every hour
-scheduleJob('0 * * * *', refreshCachedLangSpec);
+// refresh cached language specification every 5 minutes
+scheduleJob('*/5 * * * *', refreshCachedLangSpec);
 
 logger.info('Process setup complete.');
 

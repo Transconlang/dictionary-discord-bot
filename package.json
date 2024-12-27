@@ -1,6 +1,7 @@
 {
 	"author": "Akhil Pillai",
 	"dependencies": {
+		"@discordjs/collection": "^2.1.1",
 		"discord.js": "^14.16.3",
 		"dotenv": "^16.4.7",
 		"express": "^4.21.2",
@@ -8,17 +9,17 @@
 		"jsoning": "^1.0.1",
 		"luxon": "^3.5.0",
 		"node-schedule": "^2.1.1",
-		"pino": "^9.5.0",
+		"pino": "^9.6.0",
 		"pino-pretty": "^13.0.0"
 	},
 	"devDependencies": {
 		"@types/express": "^5.0.0",
 		"@types/luxon": "^3.4.2",
 		"@types/node-schedule": "^2.1.7",
-		"@typescript-eslint/eslint-plugin": "^8.18.1",
-		"@typescript-eslint/parser": "^8.18.1",
-		"knip": "^5.41.0",
-		"npm-check-updates": "^17.1.11",
+		"@typescript-eslint/eslint-plugin": "^8.18.2",
+		"@typescript-eslint/parser": "^8.18.2",
+		"knip": "^5.41.1",
+		"npm-check-updates": "^17.1.12",
 		"prettier": "^3.4.2",
 		"tsx": "^4.19.2",
 		"typescript": "^5.7.2"
