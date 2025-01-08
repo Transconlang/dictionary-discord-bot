@@ -5,6 +5,7 @@ import {
 } from '@/lib/quicklinks';
 import {
 	ChatInputCommandInteraction,
+	EmbedBuilder,
 	InteractionContextType,
 	SlashCommandBuilder
 } from 'discord.js';
@@ -39,12 +40,18 @@ export async function execute(interaction: ChatInputCommandInteraction) {
 		? SourcesList.filter(resource => resource.type === typeopt)
 		: SourcesList;
 	await interaction.reply({
-		content: resources
-			.map(
-				({ name, url, type }) =>
-					`[${name}](${url}) – ${formatResourceType(type)}`
-			)
-			.join('\n'),
-		ephemeral: interaction.options.getBoolean('ephemeral', false) ?? false
+		ephemeral: interaction.options.getBoolean('ephemeral', false) ?? false,
+		embeds: [
+			new EmbedBuilder()
+				.setTitle('Quick Links')
+				.setDescription(
+					resources
+						.map(
+							({ name, url, type }) =>
+								`[${name}](${url}) – ${formatResourceType(type)}`
+						)
+						.join('\n') || 'No such resources found D:'
+				)
+		]
 	});
 }
