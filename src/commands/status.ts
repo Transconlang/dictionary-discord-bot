@@ -27,12 +27,8 @@ export async function execute(interaction: ChatInputCommandInteraction) {
 				{
 					name: 'Uptime',
 					value: Duration.fromMillis(interaction.client.uptime).toHuman({
-						listStyle: 'long'
+						unitDisplay: 'narrow'
 					})
-				},
-				{
-					name: 'Latency (ms)',
-					value: interaction.client.ws.ping.toString()
 				},
 				{
 					name: 'Language Specification Cache Age',
@@ -42,12 +38,14 @@ export async function execute(interaction: ChatInputCommandInteraction) {
 								(await new Jsoning(
 									join(
 										dirname(fileURLToPath(import.meta.url)),
+										'..',
+										'..',
 										'stats.tmp.db.json'
 									)
 								).get('langSpecCacheAge'))!
 							)
 					).toHuman({
-						listStyle: 'long'
+						unitDisplay: 'narrow'
 					})
 				}
 			)
