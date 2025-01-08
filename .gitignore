@@ -1,7 +1,4 @@
+*.cache.json
+*.tmp.db.json
 node_modules
-
-*.env
-*..env.local
-
-*.db.json
-*.tmp.json
+.env

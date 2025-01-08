@@ -205,6 +205,7 @@ process.on('SIGINT', async () => {
 	await rm(join(Dirname, '..', 'stats.tmp.db.json'));
 	await rm(join(Dirname, '..', 'cmnds.tmp.db.json'));
 	logger.info('Removed temporary databases.');
+	logger.info('Cleaned up, exiting.');
 	process.exit(0);
 });
 
