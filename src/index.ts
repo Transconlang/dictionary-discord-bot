@@ -222,7 +222,7 @@ scheduleJob('*/5 * * * *', refreshCachedLangSpec);
 logger.info('Process setup complete.');
 
 async function sendError(e: Error) {
-const date = new Date();
+	const date = new Date();
 	for (const devId of DevIds)
 		client.users.fetch(devId).then(user => {
 			user.send({
