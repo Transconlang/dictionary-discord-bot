@@ -10,7 +10,7 @@ const Dirname = join(dirname(fileURLToPath(import.meta.url)));
 export async function refreshCachedLangSpec() {
 	const data = await fetch(LangSpecURL).then(res => res.json());
 	await writeFile(join(Dirname, 'langspec.cache.json'), JSON.stringify(data));
-	await new Jsoning(join('..', '..', '..', 'stats.tmp.db.json')).set(
+	await new Jsoning(join(Dirname, '..', '..', '..', 'stats.tmp.db.json')).set(
 		'langSpecCacheAge',
 		Date.now()
 	);
